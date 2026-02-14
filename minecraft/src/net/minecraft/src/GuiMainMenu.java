@@ -72,6 +72,7 @@ public class GuiMainMenu extends GuiScreen {
 			this.controlList.add(new GuiButton(4, this.width / 2 + 2, var4 + 72 + 12, 98, 20, var2.translateKey("menu.quit")));
 		}
 
+		this.multiplayerButton.enabled = false;
 		if(this.mc.session == null) {
 			this.multiplayerButton.enabled = false;
 		}
