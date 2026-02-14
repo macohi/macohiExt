@@ -982,142 +982,154 @@ public abstract class Minecraft implements Runnable {
 			}
 		}
 
-		if(this.currentScreen == null || this.currentScreen.field_948_f) {
-			label301:
-			while(true) {
-				while(true) {
-					while(true) {
-						long var5;
+		if (this.currentScreen == null || this.currentScreen.field_948_f) {
+			label301: while (true) {
+				long var5;
+				do {
+					if (!Mouse.next()) {
+						if (this.leftClickCounter > 0) {
+							--this.leftClickCounter;
+						}
+
 						do {
-							if(!Mouse.next()) {
-								if(this.leftClickCounter > 0) {
-									--this.leftClickCounter;
-								}
+							if (!Keyboard.next()) {
+								if (this.currentScreen == null) {
+									if (Mouse.isButtonDown(0)
+											&& (float) (this.ticksRan
+													- this.mouseTicksRan) >= this.timer.ticksPerSecond
+															/ 4.0F
+											&& this.inGameHasFocus) {
+										this.clickMouse(0);
+										this.mouseTicksRan = this.ticksRan;
+									}
 
-								while(true) {
-									while(true) {
-										do {
-											if(!Keyboard.next()) {
-												if(this.currentScreen == null) {
-													if(Mouse.isButtonDown(0) && (float)(this.ticksRan - this.mouseTicksRan) >= this.timer.ticksPerSecond / 4.0F && this.inGameHasFocus) {
-														this.clickMouse(0);
-														this.mouseTicksRan = this.ticksRan;
-													}
-
-													if(Mouse.isButtonDown(1) && (float)(this.ticksRan - this.mouseTicksRan) >= this.timer.ticksPerSecond / 4.0F && this.inGameHasFocus) {
-														this.clickMouse(1);
-														this.mouseTicksRan = this.ticksRan;
-													}
-												}
-
-												this.func_6254_a(0, this.currentScreen == null && Mouse.isButtonDown(0) && this.inGameHasFocus);
-												break label301;
-											}
-
-											this.thePlayer.handleKeyPress(Keyboard.getEventKey(), Keyboard.getEventKeyState());
-										} while(!Keyboard.getEventKeyState());
-
-										if(Keyboard.getEventKey() == Keyboard.KEY_F11) {
-											this.toggleFullscreen();
-										} else {
-											if(this.currentScreen != null) {
-												this.currentScreen.handleKeyboardInput();
-											} else {
-												if(Keyboard.getEventKey() == Keyboard.KEY_ESCAPE) {
-													this.displayInGameMenu();
-												}
-
-												if(Keyboard.getEventKey() == Keyboard.KEY_S && Keyboard.isKeyDown(Keyboard.KEY_F3)) {
-													this.forceReload();
-												}
-
-												if(Keyboard.getEventKey() == Keyboard.KEY_F1) {
-													this.gameSettings.hideGUI = !this.gameSettings.hideGUI;
-												}
-
-												if(Keyboard.getEventKey() == Keyboard.KEY_F3) {
-													this.gameSettings.showDebugInfo = !this.gameSettings.showDebugInfo;
-												}
-
-												if(Keyboard.getEventKey() == Keyboard.KEY_F5) {
-													this.gameSettings.thirdPersonView = !this.gameSettings.thirdPersonView;
-												}
-
-												if(Keyboard.getEventKey() == Keyboard.KEY_F8) {
-													this.gameSettings.smoothCamera = !this.gameSettings.smoothCamera;
-												}
-
-												if(Keyboard.getEventKey() == this.gameSettings.keyBindInventory.keyCode) {
-													this.displayGuiScreen(new GuiInventory(this.thePlayer));
-												}
-
-												if(Keyboard.getEventKey() == this.gameSettings.keyBindDrop.keyCode) {
-													this.thePlayer.dropCurrentItem();
-												}
-
-												boolean validChat = true;
-												// validChat = this.isMultiplayerWorld();
-
-												if(validChat && Keyboard.getEventKey() == this.gameSettings.keyBindChat.keyCode) {
-													this.displayGuiScreen(new GuiChat());
-												}
-											}
-
-											for(int var6 = 0; var6 < 9; ++var6) {
-												if(Keyboard.getEventKey() == Keyboard.KEY_1 + var6) {
-													this.thePlayer.inventory.currentItem = var6;
-												}
-											}
-
-											if(Keyboard.getEventKey() == this.gameSettings.keyBindToggleFog.keyCode) {
-												this.gameSettings.setOptionValue(EnumOptions.RENDER_DISTANCE, !Keyboard.isKeyDown(Keyboard.KEY_LSHIFT) && !Keyboard.isKeyDown(Keyboard.KEY_RSHIFT) ? 1 : -1);
-											}
-										}
+									if (Mouse.isButtonDown(1)
+											&& (float) (this.ticksRan
+													- this.mouseTicksRan) >= this.timer.ticksPerSecond
+															/ 4.0F
+											&& this.inGameHasFocus) {
+										this.clickMouse(1);
+										this.mouseTicksRan = this.ticksRan;
 									}
 								}
+
+								this.func_6254_a(0,
+										this.currentScreen == null
+												&& Mouse.isButtonDown(0)
+												&& this.inGameHasFocus);
+								break label301;
 							}
 
-							var5 = System.currentTimeMillis() - this.systemTime;
-						} while(var5 > 200L);
+							this.thePlayer.handleKeyPress(Keyboard.getEventKey(),
+									Keyboard.getEventKeyState());
+						} while (!Keyboard.getEventKeyState());
 
-						var3 = Mouse.getEventDWheel();
-						if(var3 != 0) {
-							this.thePlayer.inventory.changeCurrentItem(var3);
-							if(this.gameSettings.field_22275_C) {
-								if(var3 > 0) {
-									var3 = 1;
-								}
-
-								if(var3 < 0) {
-									var3 = -1;
-								}
-
-								this.gameSettings.field_22272_F += (float)var3 * 0.25F;
-							}
-						}
-
-						if(this.currentScreen == null) {
-							if(!this.inGameHasFocus && Mouse.getEventButtonState()) {
-								this.setIngameFocus();
+						if (Keyboard.getEventKey() == Keyboard.KEY_F11) {
+							this.toggleFullscreen();
+						} else {
+							if (this.currentScreen != null) {
+								this.currentScreen.handleKeyboardInput();
 							} else {
-								if(Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
-									this.clickMouse(0);
-									this.mouseTicksRan = this.ticksRan;
+								if (Keyboard.getEventKey() == Keyboard.KEY_ESCAPE) {
+									this.displayInGameMenu();
 								}
 
-								if(Mouse.getEventButton() == 1 && Mouse.getEventButtonState()) {
-									this.clickMouse(1);
-									this.mouseTicksRan = this.ticksRan;
+								if (Keyboard.getEventKey() == Keyboard.KEY_S && Keyboard
+										.isKeyDown(Keyboard.KEY_F3)) {
+									this.forceReload();
 								}
 
-								if(Mouse.getEventButton() == 2 && Mouse.getEventButtonState()) {
-									this.clickMiddleMouseButton();
+								if (Keyboard.getEventKey() == Keyboard.KEY_F1) {
+									this.gameSettings.hideGUI = !this.gameSettings.hideGUI;
+								}
+
+								if (Keyboard.getEventKey() == Keyboard.KEY_F3) {
+									this.gameSettings.showDebugInfo = !this.gameSettings.showDebugInfo;
+								}
+
+								if (Keyboard.getEventKey() == Keyboard.KEY_F5) {
+									this.gameSettings.thirdPersonView = !this.gameSettings.thirdPersonView;
+								}
+
+								if (Keyboard.getEventKey() == Keyboard.KEY_F8) {
+									this.gameSettings.smoothCamera = !this.gameSettings.smoothCamera;
+								}
+
+								if (Keyboard.getEventKey() == this.gameSettings.keyBindInventory.keyCode) {
+									this.displayGuiScreen(new GuiInventory(
+											this.thePlayer));
+								}
+
+								if (Keyboard.getEventKey() == this.gameSettings.keyBindDrop.keyCode) {
+									this.thePlayer.dropCurrentItem();
+								}
+
+								boolean validChat = true;
+								// validChat = this.isMultiplayerWorld();
+
+								if (validChat && Keyboard
+										.getEventKey() == this.gameSettings.keyBindChat.keyCode) {
+									this.displayGuiScreen(new GuiChat());
 								}
 							}
-						} else if(this.currentScreen != null) {
-							this.currentScreen.handleMouseInput();
+
+							for (int var6 = 0; var6 < 9; ++var6) {
+								if (Keyboard.getEventKey() == Keyboard.KEY_1 + var6) {
+									this.thePlayer.inventory.currentItem = var6;
+								}
+							}
+
+							if (Keyboard.getEventKey() == this.gameSettings.keyBindToggleFog.keyCode) {
+								this.gameSettings.setOptionValue(
+										EnumOptions.RENDER_DISTANCE,
+										!Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)
+												&& !Keyboard.isKeyDown(
+														Keyboard.KEY_RSHIFT)
+																? 1
+																: -1);
+							}
 						}
 					}
+
+					var5 = System.currentTimeMillis() - this.systemTime;
+				} while (var5 > 200L);
+
+				var3 = Mouse.getEventDWheel();
+				if (var3 != 0) {
+					this.thePlayer.inventory.changeCurrentItem(var3);
+					if (this.gameSettings.field_22275_C) {
+						if (var3 > 0) {
+							var3 = 1;
+						}
+
+						if (var3 < 0) {
+							var3 = -1;
+						}
+
+						this.gameSettings.field_22272_F += (float) var3 * 0.25F;
+					}
+				}
+
+				if (this.currentScreen == null) {
+					if (!this.inGameHasFocus && Mouse.getEventButtonState()) {
+						this.setIngameFocus();
+					} else {
+						if (Mouse.getEventButton() == 0 && Mouse.getEventButtonState()) {
+							this.clickMouse(0);
+							this.mouseTicksRan = this.ticksRan;
+						}
+
+						if (Mouse.getEventButton() == 1 && Mouse.getEventButtonState()) {
+							this.clickMouse(1);
+							this.mouseTicksRan = this.ticksRan;
+						}
+
+						if (Mouse.getEventButton() == 2 && Mouse.getEventButtonState()) {
+							this.clickMiddleMouseButton();
+						}
+					}
+				} else if (this.currentScreen != null) {
+					this.currentScreen.handleMouseInput();
 				}
 			}
 		}
