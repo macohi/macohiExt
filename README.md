@@ -1,5 +1,6 @@
 # 1.0 : 2/13/2026
 
+- The version is now visible outside of the F3 debug screen
 - Multiplayer Main Menu button disabled
 
 # 0.0 : 2/13/2026
