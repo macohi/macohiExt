@@ -1,5 +1,6 @@
 # 1.0 : 2/13/2026
 
+- Slightly modified Main menu copyright msg
 - Chat is now enabled in all world types
 - The version is now visible outside of the F3 debug screen
 - Multiplayer Main Menu button disabled
