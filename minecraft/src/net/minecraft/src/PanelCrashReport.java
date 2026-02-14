@@ -12,6 +12,8 @@ import java.util.Date;
 import org.lwjgl.Sys;
 import org.lwjgl.opengl.GL11;
 
+import net.macohi.Version;
+
 public class PanelCrashReport extends Panel {
 	public PanelCrashReport(UnexpectedThrowable var1) {
 		this.setBackground(new Color(3028036));
@@ -25,7 +27,7 @@ public class PanelCrashReport extends Panel {
 		try {
 			var5 = var5 + "Generated " + (new SimpleDateFormat()).format(new Date()) + "\n";
 			var5 = var5 + "\n";
-			var5 = var5 + "Minecraft: Minecraft Beta 1.7.3\n";
+			var5 = var5 + "Version: "+Version.fullversion()+"\n";
 			var5 = var5 + "OS: " + System.getProperty("os.name") + " (" + System.getProperty("os.arch") + ") version " + System.getProperty("os.version") + "\n";
 			var5 = var5 + "Java: " + System.getProperty("java.version") + ", " + System.getProperty("java.vendor") + "\n";
 			var5 = var5 + "VM: " + System.getProperty("java.vm.name") + " (" + System.getProperty("java.vm.info") + "), " + System.getProperty("java.vm.vendor") + "\n";

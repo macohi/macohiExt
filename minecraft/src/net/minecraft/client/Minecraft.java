@@ -8,6 +8,8 @@ import java.awt.Dimension;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.io.File;
+
+import net.macohi.Version;
 import net.minecraft.src.AchievementList;
 import net.minecraft.src.AxisAlignedBB;
 import net.minecraft.src.Block;
@@ -218,7 +220,7 @@ public abstract class Minecraft implements Runnable {
 			Display.setDisplayMode(new DisplayMode(this.displayWidth, this.displayHeight));
 		}
 
-		Display.setTitle("Minecraft Minecraft Beta 1.7.3");
+		Display.setTitle(Version.fullversion());
 
 		try {
 			Display.create();
