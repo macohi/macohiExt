@@ -42,7 +42,7 @@ public class BlockLog extends Block {
 	}
 
 	public int getBlockTextureFromSideAndMetadata(int var1, int var2) {
-		return var1 == 1 ? 21 : (var1 == 0 ? 21 : (var2 == 1 ? 116 : (var2 == 2 ? 117 : 20)));
+		return (var1 == 1 || var1 == 0) ? 21 : 20;
 	}
 
 	protected int damageDropped(int var1) {
