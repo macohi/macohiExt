@@ -1,14 +1,17 @@
-# 1.0 : 2/13/2026
+# Install
 
-- Removed alt wood and leave variations
-- Some textures have been changed to their alpha counterpart
-- Changed Foliage and gress color to be the same no matter what
-- Slightly modified Main menu copyright msg
-- Chat is now enabled in all world types (lil weird on single player, I don't understand why)
-- The version is now visible outside of the F3 debug screen
-- Multiplayer Main Menu button disabled
+You need RetroMCP and Java
+Change the working directory to smth random maybe make ur own
+change the version to beta 1.7.3
+setup
+decompile
+then change the working directory to this project's directory
+recompile
+and you should be good
 
-# 0.0 : 2/13/2026
+then run this shit
 
-- Added `net.macohi.Version` : version manager class
-- Removed "Unlicensed Copy" message
+```bash
+jar uvfm jars/minecraft.jar manifest.txt
+jar -jar jars/minecraft.jar
+```
