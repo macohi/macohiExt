@@ -1,4 +1,4 @@
-# 1.0 : 2/13/2026
+# 1.0 : 2/15/2026
 
 - Removed alt wood and leave variations
 - Some textures have been changed to their alpha counterpart
