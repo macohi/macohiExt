@@ -7,11 +7,10 @@ setup
 decompile
 then change the working directory to this project's directory
 recompile
-and you should be good
+and you should be good,
 
-then run this shit
+## Editing Shit
 
-```bash
-jar uvfm jars/minecraft.jar manifest.txt
-jar -jar jars/minecraft.jar
-```
+make ur edits
+recompile
+profit
