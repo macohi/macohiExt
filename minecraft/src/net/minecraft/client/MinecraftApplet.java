@@ -13,9 +13,6 @@ public class MinecraftApplet extends Applet {
 	private Thread mcThread = null;
 
 	public void init() {
-		System.out.println(this.getParameterInfo());
-		System.out.println(this.getAppletInfo());
-
 		this.mcCanvas = new CanvasMinecraftApplet(this);
 		boolean var1 = false;
 		if(this.getParameter("fullscreen") != null) {
